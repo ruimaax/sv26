@@ -1,3 +1,4 @@
+// ── Corazones flotantes en el fondo ─────────────────────────────────────────
 const bg     = document.getElementById('heartsBg');
 const emojis = ['❤️','💕','💖','💗','💓','🌸','✨','💝'];
 
@@ -12,12 +13,26 @@ for (let i = 0; i < 24; i++) {
   bg.appendChild(h);
 }
 
+// ── Botón NO que huye ────────────────────────────────────────────────────────
 const btnNo   = document.getElementById('btnNo');
 const fleeMsg = document.getElementById('flee-msg');
 let noSize     = 16;
 let escapeCount = 0;
 let fleeMsgTimer = null;
 
+const escapeMsgs = [
+  "Perdona? Creo que se te ha resbalado el dedo",
+  "Acaso no te gusta la felicidad? ¿Es eso?",
+  "En serio? 🚩🚩🚩",
+  "Confirmamos que hoy eres mi hater.",
+  "Piénsatelo otra vez, te espero.",
+  "Oye, que el botón de Sí es gratis",
+  "yo ahora mismo: 🤡",
+  "Esto no me lo esperaba de ti...",
+  "Borra, borra, que todavía estás a tiempo de quedar bien",
+];
+
+// Posición inicial
 function placeNoBtn() {
   const w = window.innerWidth;
   const h = window.innerHeight;
@@ -39,16 +54,20 @@ function teleportNo() {
   btnNo.style.left = newX + 'px';
   btnNo.style.top  = newY + 'px';
 
+  // Encoger el botón con cada huida
   escapeCount++;
   noSize = Math.max(8, 16 - escapeCount * 0.8);
   btnNo.style.fontSize = noSize + 'px';
   btnNo.style.opacity  = Math.max(0.3, 1 - escapeCount * 0.06);
 
+  // Mensaje gracioso
+  fleeMsg.textContent  = escapeMsgs[escapeCount % escapeMsgs.length];
   fleeMsg.style.opacity = '1';
   clearTimeout(fleeMsgTimer);
   fleeMsgTimer = setTimeout(() => fleeMsg.style.opacity = '0', 1500);
 }
 
+// Huye cuando el cursor se acerca a menos de 90px
 document.addEventListener('mousemove', (e) => {
   const rect = btnNo.getBoundingClientRect();
   const cx   = rect.left + rect.width  / 2;
@@ -57,6 +76,7 @@ document.addEventListener('mousemove', (e) => {
   if (dist < 90) teleportNo();
 });
 
+// Huye en móvil al arrastrar el dedo
 document.addEventListener('touchmove', (e) => {
   const t    = e.touches[0];
   const rect = btnNo.getBoundingClientRect();
@@ -66,12 +86,14 @@ document.addEventListener('touchmove', (e) => {
   if (dist < 100) teleportNo();
 }, { passive: true });
 
+// Si de algún milagro le hacen clic, también escapa
 btnNo.addEventListener('click', teleportNo);
 btnNo.addEventListener('touchstart', (e) => {
   e.preventDefault();
   teleportNo();
 }, { passive: false });
 
+// ── Pantalla de amor ─────────────────────────────────────────────────────────
 function showLove() {
   document.getElementById('screen1').style.display = 'none';
   btnNo.style.display   = 'none';

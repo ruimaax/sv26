@@ -15,6 +15,7 @@ body {
   cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Ctext y='28' font-size='28'%3E💗%3C/text%3E%3C/svg%3E") 16 16, pointer;
 }
 
+/* ── Corazones flotantes ── */
 .hearts-bg {
   position: fixed;
   inset: 0;
@@ -36,6 +37,7 @@ body {
   100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
 }
 
+/* ── Pantalla 1 ── */
 #screen1 {
   position: relative;
   z-index: 1;
@@ -79,6 +81,7 @@ body {
   margin-top: 0.5rem;
 }
 
+/* ── Botones ── */
 .btn-si {
   font-family: 'Pacifico', cursive;
   font-size: clamp(1.2rem, 3vw, 1.8rem);
@@ -117,6 +120,7 @@ body {
   white-space: nowrap;
 }
 
+/* ── Mensaje de huida ── */
 #flee-msg {
   position: fixed;
   top: 1.2rem;
@@ -132,6 +136,7 @@ body {
   z-index: 20;
 }
 
+/* ── Pantalla 2 ── */
 #screen2 {
   display: none;
   position: fixed;
@@ -154,7 +159,7 @@ body {
 
 .love-title {
   font-family: 'Pacifico', cursive;
-  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-size: 50px;
   color: var(--red);
   text-shadow: 4px 4px 0 #ffb3cb;
   animation: pulse 0.8s ease-in-out infinite alternate;
@@ -172,12 +177,13 @@ body {
 }
 
 .cat-gif {
-  width: min(280px, 80vw);
+  width: min(580px, 80vw);
   border-radius: 24px;
   box-shadow: 0 8px 40px #ff6b9d55;
   border: 5px solid var(--pink);
 }
 
+/* ── Confeti ── */
 .confetti-container {
   position: fixed;
   inset: 0;
